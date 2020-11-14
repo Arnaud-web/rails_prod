@@ -1,7 +1,7 @@
 class ContactMailer < ApplicationMailer
-    def contact(hotel)
-        @hotel = hotel
-       mail(to: 'a@a.com' , subject: 'mIL' )
+    def contact(data)
+        @data = data
+       mail(to: 'admin@admin.com' , subject: 'reservation' )
         
     end
 end

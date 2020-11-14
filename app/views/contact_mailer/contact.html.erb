@@ -1,3 +1,21 @@
 <p> test mail rapide </p>
 
- <%= @hotel.name %>
+ <div>
+<p> info sur client </p>
+ 
+<p> Email du client : <%= @data['user']['email'] %> </p>
+<p> Rôle du client : <%= @data['user']['role'] %> </p>
+ </div>
+ <div>
+<p> reservation </p>
+ 
+<p>date: <%= @data['date'] %> </p>
+<p> heure: <%= @data['heure'] %> </p>
+ </div>
+ 
+
+ <div>
+<p> Nom de l'hotel : <%= @data['hotel']['name'] %> </p>
+<p> Adress de l'hotel : <%= @data['hotel']['adress'] %> </p>
+
+ </div>

@@ -35,13 +35,13 @@
           <div>
             <Hotel :hotel="hotel" />
             <div class="btn_options">
-              <button
+              <!-- <button
                 v-if="!showLogin()"
                 class="btn btn-sm btn-info"
-                @click="reserver(hotel)"
+                @click="showFormEmail = !showFormEmail"
               >
                 Reservé
-              </button>
+              </button> -->
               <button class="btn btn-sm btn-info" @click="show(hotel)">
                 show
               </button>
@@ -62,13 +62,16 @@
         <button
           v-if="!showLogin()"
           class="btn btn-sm btn-info"
-          @click="reserver(hotel)"
+         @click="showFormEmail = !showFormEmail"
         >
           Reservé
         </button>
         <button class="btn btn-sm btn-info" @click="show(hotel)">
           Listes Hotels
         </button>
+      </div>
+      <div v-if="showFormEmail" >
+        <FormMail :hotel="hotel"/>
       </div>
     </div>
   </div>
@@ -81,6 +84,7 @@ import Hotel from "./components/Hotel";
 import LoginApp from "./components/login/LoginApp";
 import Segnup from "./components/login/Segnup";
 import Create from "./components/hotel/Create";
+import FormMail from './components/mail/FormMail'
 export default {
   data: function () {
     return {
@@ -90,6 +94,7 @@ export default {
       search: "",
       showC: false,
       hotel: "",
+      showFormEmail: false,
     };
   },
   components: {
@@ -98,6 +103,7 @@ export default {
     LoginApp,
     Segnup,
     Create,
+    FormMail,
   },
   computed: {},
   methods: {
