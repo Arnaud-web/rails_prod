@@ -2,7 +2,8 @@
   <div id="app" class="body_h">
     <div v-show="showH">
       <p>{{ message }}</p>
-      <LoginApp/>
+      <LoginApp v-if="showLogin()" />
+      <!-- {{ this.$store.state.user }} -->
       <div>
         <input
           type="text"
@@ -25,6 +26,13 @@
           <div>
             <Hotel :hotel="hotel" />
             <div class="btn_options">
+              <button
+                v-if="!showLogin()"
+                class="btn btn-sm btn-info"
+                @click="reserver(hotel)"
+              >
+                Reservé
+              </button>
               <button class="btn btn-sm btn-info" @click="show(hotel)">
                 show
               </button>
@@ -39,10 +47,19 @@
     <div v-if="showH == false">
       <ShowHotel :hotel="hotel" />
       <div class="btn_options">
-        <button class="btn btn-sm btn-info" @click="show(hotel)">Listes Hotels</button>
         <!-- <a class="btn btn" @click="addToCart(hotel)">
           reserve
           </a> -->
+        <button
+          v-if="!showLogin()"
+          class="btn btn-sm btn-info"
+          @click="reserver(hotel)"
+        >
+          Reservé
+        </button>
+        <button class="btn btn-sm btn-info" @click="show(hotel)">
+          Listes Hotels
+        </button>
       </div>
     </div>
   </div>
@@ -52,7 +69,7 @@
 import ShowHotel from "./components/ShowHotel";
 import axios from "axios";
 import Hotel from "./components/Hotel";
-import LoginApp from './components/login/LoginApp'
+import LoginApp from "./components/login/LoginApp";
 export default {
   data: function () {
     return {
@@ -66,9 +83,17 @@ export default {
   components: {
     Hotel,
     ShowHotel,
-    LoginApp
+    LoginApp,
   },
+  computed: {},
   methods: {
+    showLogin() {
+      if (this.$store.state.user.id) {
+        return false;
+      } else {
+        return true;
+      }
+    },
     hotelsFilter() {
       console.log(this.search, this.hotels);
       var _hotels = this.hotels;
@@ -82,7 +107,9 @@ export default {
         return this.hotels;
       }
     },
-
+    reserver(hotel) {
+      console.log(hotel);
+    },
     show(hotel) {
       this.hotel = hotel;
       this.showH = !this.showH;
@@ -128,7 +155,8 @@ p {
   margin-left: 2px;
   margin-right: 2px;
   text-align: end;
-}.body_h{
+}
+.body_h {
   margin: 20px;
 }
 </style>

@@ -5,10 +5,30 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        user: []
+        user: [],
+        hotels:[]
     },
     getters: {
-        hotels() {
+        getUser(){
+            return this.state.user
+        },
+
+    },
+    actions:{
+
+        setUser({commit},user){
+            console.log('ok set')
+            commit('SET_USER',user)
         }
+
+    },
+    mutations:{
+
+        SET_USER (state,user){
+            state.user = user
+            console.log(state)
+        }
+
     }
+    
 })

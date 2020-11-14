@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import Vuex, { mapActions } from 'vuex'
 import axios from 'axios'
 export default {
     data(){
@@ -25,6 +26,10 @@ export default {
         }
     },
     methods:{
+        ...mapActions({
+            setUser :'setUser'
+        }
+        ),
         async connect()  {
             console.log(this.email,this.password)
             if (this.password && this.email) {
@@ -39,11 +44,14 @@ export default {
                 console.log("res",res)
                 this.data = res
                 if (this.data.data.id) {
-                console.log(this.$store)
+                    this.setUser(this.data.data)
                 }
             } else {
                 console('not send')
             }
+        },
+        setStore(){
+            // store.actions.setUser(this.data.data)
         }
     }
     
