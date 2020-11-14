@@ -4,6 +4,7 @@
       <p>{{ message }}</p>
       <LoginApp v-if="showLogin()" />
       <!-- {{ this.$store.state.user }} -->
+      <Signup />
       <div>
         <input
           type="text"
@@ -70,6 +71,7 @@ import ShowHotel from "./components/ShowHotel";
 import axios from "axios";
 import Hotel from "./components/Hotel";
 import LoginApp from "./components/login/LoginApp";
+import Signup from "./components/login/Signup";
 export default {
   data: function () {
     return {
@@ -84,6 +86,7 @@ export default {
     Hotel,
     ShowHotel,
     LoginApp,
+    Signup,
   },
   computed: {},
   methods: {
@@ -119,12 +122,13 @@ export default {
     axios
       .get("http://127.0.0.1:3000/v1/hotels")
       .then((response) => {
-        this.hotels = response.data;
-        console.log(response.data);
+        this.hotels = response.data
+        this.$store.state.hotels = response.data
+        console.log(response.data)
       })
       .catch((error) => {
-        console.log(error);
-        this.errored = true;
+        console.log(error)
+        this.errored = true
       });
   },
 };
