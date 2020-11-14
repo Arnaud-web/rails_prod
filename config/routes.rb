@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   get 'site/index'
   get 'site/login'
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -6,5 +7,11 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   namespace :v1 do
     resources :hotels
+    resources :users do
+      collection do
+        post 'login'
+      end
+    end
   end
 end
+
