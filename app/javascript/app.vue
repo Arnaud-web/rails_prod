@@ -1,9 +1,19 @@
 <template>
   <div id="app">
     <p>{{ message }}</p>
-    <div class="list_hotel" v-for="(hotel, index) in hotels" :key="index" >
+     <div>
+      <input
+        type="text"
+        placeholder="Search"
+        v-model="search"
+        @change="hotelsFilter"
+      />
+    <span v-if="search !=''" class="resulta" > {{hotelsFilter().length}} resultats{{hotelsFilter().length>1 ? 's' :'' }} </span>
+    </div>
+    <div class="list_hotel" v-for="(hotel, index) in hotelsFilter()" :key="index" >
       <Hotel :hotel = "hotel" />
     </div>
+
   </div>
 </template>
 
@@ -14,11 +24,29 @@ export default {
   data: function () {
     return {
       message: "Hello Vue God!",
-      hotels:[]
+      hotels:[],
+      hotels_: [],
+      search: ''
     }
   },
   components:{
     Hotel
+  },
+  methods:{
+    hotelsFilter() {
+      console.log(this.search,this.hotels);
+      var _hotels = this.hotels
+      if (this.search != "") {
+        _hotels = this.hotels.filter((hotel) => {
+          return hotel.name.toLowerCase().includes(this.search);
+        });
+        console.log('recherche', _hotels);
+        return  _hotels;
+      } else {
+        return this.hotels;
+      }
+    },
+
   },
   mounted () {
     axios
@@ -50,5 +78,9 @@ p {
   float: left;
   /* width: 33%; */
   display: contents;
+}.resulta{
+  padding-left: 12px;
+  color: gray;
+  font-size: 18px;
 }
 </style>
