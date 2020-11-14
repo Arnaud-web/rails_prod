@@ -34,8 +34,7 @@ export default {
         const json = {
           email: this.email,
           role: this.role,
-          password: this.password,
-          id: 5,
+          password: this.password
         };
         const res = await axios.post("http://127.0.0.1:3000/v1/users", json, {
           headers: {

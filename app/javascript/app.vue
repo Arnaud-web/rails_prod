@@ -2,11 +2,15 @@
   <div id="app" class="body_h">
     <div v-show="showH">
       <p>{{ message }}</p>
-
+      <div v-if="!showLogin()"> 
+        <Create v-if="this.$store.state.user.role=='hotel'" />
+      </div>
       <LoginApp v-show="!showC" v-if="showLogin()" />
       {{ this.$store.state.user }}
       <div v-show="showLogin()">
-      <a class="" @click="showC=!showC">{{ !showC ? 'Cree un Compte' : 'se Connecté' }}</a>  
+        <a class="" @click="showC = !showC">{{
+          !showC ? "Cree un Compte" : "se Connecté"
+        }}</a>
         <Segnup v-show="showC" />
       </div>
       <div>
@@ -76,7 +80,7 @@ import axios from "axios";
 import Hotel from "./components/Hotel";
 import LoginApp from "./components/login/LoginApp";
 import Segnup from "./components/login/Segnup";
-
+import Create from "./components/hotel/Create";
 export default {
   data: function () {
     return {
@@ -84,7 +88,7 @@ export default {
       hotels: [],
       showH: true,
       search: "",
-      showC:false,
+      showC: false,
       hotel: "",
     };
   },
@@ -93,6 +97,7 @@ export default {
     ShowHotel,
     LoginApp,
     Segnup,
+    Create,
   },
   computed: {},
   methods: {
@@ -103,6 +108,7 @@ export default {
         return true;
       }
     },
+
     hotelsFilter() {
       console.log(this.search, this.hotels);
       var _hotels = this.hotels;
@@ -128,13 +134,13 @@ export default {
     axios
       .get("http://127.0.0.1:3000/v1/hotels")
       .then((response) => {
-        this.hotels = response.data
-        this.$store.state.hotels = response.data
-        console.log(response.data)
+        this.hotels = response.data;
+        this.$store.state.hotels = response.data;
+        console.log(response.data);
       })
       .catch((error) => {
-        console.log(error)
-        this.errored = true
+        console.log(error);
+        this.errored = true;
       });
   },
 };
@@ -168,5 +174,6 @@ p {
 }
 .body_h {
   margin: 20px;
+  text-align: center;
 }
 </style>
