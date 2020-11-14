@@ -2,9 +2,13 @@
   <div id="app" class="body_h">
     <div v-show="showH">
       <p>{{ message }}</p>
-      <LoginApp v-if="showLogin()" />
-      <!-- {{ this.$store.state.user }} -->
-      <Signup />
+
+      <LoginApp v-show="!showC" v-if="showLogin()" />
+      {{ this.$store.state.user }}
+      <div v-show="showLogin()">
+      <a class="" @click="showC=!showC">{{ !showC ? 'Cree un Compte' : 'se Connecté' }}</a>  
+        <Segnup v-show="showC" />
+      </div>
       <div>
         <input
           type="text"
@@ -71,7 +75,8 @@ import ShowHotel from "./components/ShowHotel";
 import axios from "axios";
 import Hotel from "./components/Hotel";
 import LoginApp from "./components/login/LoginApp";
-import Signup from "./components/login/Signup";
+import Segnup from "./components/login/Segnup";
+
 export default {
   data: function () {
     return {
@@ -79,6 +84,7 @@ export default {
       hotels: [],
       showH: true,
       search: "",
+      showC:false,
       hotel: "",
     };
   },
@@ -86,7 +92,7 @@ export default {
     Hotel,
     ShowHotel,
     LoginApp,
-    Signup,
+    Segnup,
   },
   computed: {},
   methods: {

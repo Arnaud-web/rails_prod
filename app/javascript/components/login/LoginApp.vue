@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="login">
+  <div id="apps" class="login">
       
     <input type="text" placeholder="Email" v-model="email" />
     <input type="password" placeholder="Mots de pass" v-model="password" />
@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import Vuex, { mapActions } from 'vuex'
+import { mapActions } from 'vuex'
 import axios from 'axios'
 export default {
     data(){
