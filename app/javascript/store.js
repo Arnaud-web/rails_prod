@@ -19,6 +19,11 @@ export default new Vuex.Store({
         setUser({commit},user){
             console.log('ok set')
             commit('SET_USER',user)
+        },
+
+        setHotels({commit},hotels){
+            console.log('ok set')
+            commit('SET_HOTELS',hotels)
         }
 
     },
@@ -26,6 +31,10 @@ export default new Vuex.Store({
 
         SET_USER (state,user){
             state.user = user
+            console.log(state)
+        },
+        SET_HOTELS (state,hotels){
+            state.hotels = hotels
             console.log(state)
         }
 

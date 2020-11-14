@@ -111,7 +111,7 @@ export default {
 
     hotelsFilter() {
       console.log(this.search, this.hotels);
-      var _hotels = this.hotels;
+      var _hotels = this.$store.state.hotels;
       if (this.search != "") {
         _hotels = this.hotels.filter((hotel) => {
           return hotel.name.toLowerCase().includes(this.search);
@@ -119,7 +119,7 @@ export default {
         console.log("recherche", _hotels);
         return _hotels;
       } else {
-        return this.hotels;
+        return _hotels;
       }
     },
     reserver(hotel) {
@@ -137,6 +137,7 @@ export default {
         this.hotels = response.data;
         this.$store.state.hotels = response.data;
         console.log(response.data);
+        console.log('store',this.$store.state.hotels);
       })
       .catch((error) => {
         console.log(error);
