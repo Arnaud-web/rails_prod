@@ -2,6 +2,7 @@
   <div id="app" class="body_h">
     <div v-show="showH">
       <p>{{ message }}</p>
+      <LoginApp/>
       <div>
         <input
           type="text"
@@ -51,6 +52,7 @@
 import ShowHotel from "./components/ShowHotel";
 import axios from "axios";
 import Hotel from "./components/Hotel";
+import LoginApp from './components/login/LoginApp'
 export default {
   data: function () {
     return {
@@ -64,6 +66,7 @@ export default {
   components: {
     Hotel,
     ShowHotel,
+    LoginApp
   },
   methods: {
     hotelsFilter() {

@@ -1,13 +1,15 @@
 <template>
     <div id="app" class="login" >
-        <input type="text" placeholder="Email" >
-        <input type="text" placeholder="Mots de pass" >
-        <button  > connecter </button>
+        <LoginApp />
     </div>
 </template>
 
 <script>
+import LoginApp from './components/login/LoginApp'
 export default {
+    components:{
+        LoginApp
+    }
     
 }
 </script>

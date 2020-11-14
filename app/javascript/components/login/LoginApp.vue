@@ -1,0 +1,57 @@
+<template>
+  <div id="app" class="login">
+      
+    <input type="text" placeholder="Email" v-model="email" />
+    <input type="password" placeholder="Mots de pass" v-model="password" />
+    <button @click="connect()">connecter</button>
+    {{ datas.data }}
+    <p class="error" > {{  datas.data ? datas.data.error : '' }} </p>
+  </div>
+</template>
+
+<script>
+import axios from 'axios'
+export default {
+    data(){
+        return {
+            email: '',
+            password: '',
+            data: []
+        }
+    },
+    computed:{
+        datas(){
+            return this.data
+        }
+    },
+    methods:{
+        async connect()  {
+            console.log(this.email,this.password)
+            if (this.password && this.email) {
+                const json = { email: this.email,password: this.password }
+                const res = await axios.post('http://127.0.0.1:3000/v1/users/login', json, {
+                    headers: {
+                        // Overwrite Axios's automatically set Content-Type
+                        'Content-Type': 'application/json'
+                    }
+                })
+
+                console.log("res",res)
+                this.data = res
+                if (this.data.data.id) {
+                console.log(this.$store)
+                }
+            } else {
+                console('not send')
+            }
+        }
+    }
+    
+}
+</script>
+
+<style>
+.login {
+  text-align: center;
+}
+</style>
