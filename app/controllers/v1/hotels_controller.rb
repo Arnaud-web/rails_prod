@@ -1,4 +1,4 @@
-class V1::HotelsController < ApplicationController
+class V1::HotelsController < ActionController::API
     # skip_before_action :verify_authenticity_token
     def index
         @resto = Hotel.all
