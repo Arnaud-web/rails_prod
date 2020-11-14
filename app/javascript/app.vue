@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="body_h">
     <div v-show="showH">
       <p>{{ message }}</p>
       <div>
@@ -54,7 +54,7 @@ import Hotel from "./components/Hotel";
 export default {
   data: function () {
     return {
-      message: "Hello Vue God!",
+      message: "Hello Word",
       hotels: [],
       showH: true,
       search: "",
@@ -125,5 +125,7 @@ p {
   margin-left: 2px;
   margin-right: 2px;
   text-align: end;
+}.body_h{
+  margin: 20px;
 }
 </style>
