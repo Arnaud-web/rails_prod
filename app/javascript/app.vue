@@ -73,6 +73,9 @@
       <div v-if="showFormEmail" >
         <FormMail :hotel="hotel"/>
       </div>
+      <div v-if="!showLogin()" >
+        <Comments />
+      </div>
     </div>
   </div>
 </template>
@@ -85,6 +88,7 @@ import LoginApp from "./components/login/LoginApp";
 import Segnup from "./components/login/Segnup";
 import Create from "./components/hotel/Create";
 import FormMail from './components/mail/FormMail'
+import Comments from './components/hotel/Comments'
 export default {
   data: function () {
     return {
@@ -104,6 +108,7 @@ export default {
     Segnup,
     Create,
     FormMail,
+    Comments,
   },
   computed: {},
   methods: {
