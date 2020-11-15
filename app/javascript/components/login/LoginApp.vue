@@ -11,6 +11,7 @@
 
 <script>
 import { mapActions } from 'vuex'
+
 import axios from 'axios'
 export default {
     data(){
@@ -45,7 +46,7 @@ export default {
                 this.data = res
                 if (this.data.data.id) {
                     this.setUser(this.data.data)
-                    $cookies.set('user',JSON.stringify(this.data.data))
+                    this.$cookies.set('user',JSON.stringify(this.data.data))
                 }
             } else {
                 console('not send')

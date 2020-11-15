@@ -2,11 +2,14 @@
   <div id="app" class="body_h">
     <div v-show="showH">
       <p>{{ message }}</p>
-      <div v-if="!showLogin()"> 
-        <Create v-if="this.$store.state.user.role=='hotel'" />
+      <div v-if="!showLogin()">
+        <Create v-if="this.$store.state.user.role == 'hotel'" />
       </div>
       <LoginApp v-show="!showC" v-if="showLogin()" />
       {{ this.$store.state.user }}
+      <div v-if="!showLogin()">
+        <a @click="deconnect()">Déconnecter</a>
+      </div>
       <div v-show="showLogin()">
         <a class="" @click="showC = !showC">{{
           !showC ? "Cree un Compte" : "se Connecté"
@@ -59,25 +62,25 @@
         <!-- <a class="btn btn" @click="addToCart(hotel)">
           reserve
           </a> -->
-        <v-btn
+        <button
           v-if="!showLogin()"
           class="btn btn-sm btn-info"
-         @click="showFormEmail = !showFormEmail"
+          @click="showFormEmail = !showFormEmail"
         >
           Reservé
-        </v-btn>
-        <v-btn class="btn btn-sm btn-info" @click="show(hotel)">
+        </button>
+        <button class="btn btn-sm btn-info" @click="show(hotel)">
           Listes Hotels
-        </v-btn>
+        </button>
       </div>
-      <div v-if="showFormEmail" >
-        <FormMail :hotel="hotel"/>
+      <div v-if="showFormEmail">
+        <FormMail :hotel="hotel" />
       </div>
       <div>
-        <CommentShow :hotel = "hotel"/>
+        <CommentShow :hotel="hotel" />
       </div>
-      <div v-if="!showLogin()" >
-        <Comments :hotel="hotel"/>
+      <div v-if="!showLogin()">
+        <Comments :hotel="hotel" />
       </div>
     </div>
   </div>
@@ -90,9 +93,9 @@ import Hotel from "./components/Hotel";
 import LoginApp from "./components/login/LoginApp";
 import Segnup from "./components/login/Segnup";
 import Create from "./components/hotel/Create";
-import FormMail from './components/mail/FormMail'
-import Comments from './components/hotel/Comments'
-import CommentShow from './components/hotel/CommentShow'
+import FormMail from "./components/mail/FormMail";
+import Comments from "./components/hotel/Comments";
+import CommentShow from "./components/hotel/CommentShow";
 export default {
   data: function () {
     return {
@@ -145,6 +148,17 @@ export default {
       this.hotel = hotel;
       this.showH = !this.showH;
     },
+    get() {
+      let cookieValue = this.$cookies.get("user");
+      if (cookieValue) {
+        this.$store.state.user = cookieValue;
+      }
+      console.log("cookies", cookieValue);
+    },
+    deconnect() {
+      this.$store.state.user = [];
+      this.$cookies.remove("user");
+    },
   },
   mounted() {
     axios
@@ -153,26 +167,26 @@ export default {
         this.hotels = response.data;
         this.$store.state.hotels = response.data;
         console.log(response.data);
-        console.log('store',this.$store.state.hotels);
+        console.log("store", this.$store.state.hotels);
       })
       .catch((error) => {
         console.log(error);
         this.errored = true;
-      })
-      axios
+      });
+    axios
       .get("http://127.0.0.1:3000/v1/user_comment")
       .then((response) => {
         // this.hotels = response.data;
         this.$store.state.comments = response.data;
         console.log(response.data);
-        console.log('comments',this.$store.state.comments);
+        console.log("comments", this.$store.state.comments);
       })
       .catch((error) => {
         console.log(error);
         this.errored = true;
-      })
-      let cookieValue  = JSON.parse($cookies.get('user'))
-      console.log("cookies", cookieValue)
+      });
+    this.get();
+    // console.log('cook',this.$cookies)
   },
 };
 </script>

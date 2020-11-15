@@ -9,6 +9,7 @@
     "axios": "^0.21.0",
     "turbolinks": "^5.2.0",
     "vue": "^2.6.12",
+    "vue-cookies": "^1.7.4",
     "vue-loader": "^15.9.5",
     "vue-template-compiler": "^2.6.12",
     "vue-turbolinks": "^2.1.0",
