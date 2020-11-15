@@ -45,6 +45,7 @@ export default {
                 this.data = res
                 if (this.data.data.id) {
                     this.setUser(this.data.data)
+                    $cookies.set('user',JSON.stringify(this.data.data))
                 }
             } else {
                 console('not send')

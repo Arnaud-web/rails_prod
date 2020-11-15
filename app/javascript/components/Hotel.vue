@@ -1,8 +1,8 @@
 <template>
      
-    <v-card class="container_hotel">
+    <div class="container_hotel">
       <div class="hotel">
-        <v-card-title class="name_hotel">{{ hotel.name }}</v-card-title>
+        <p class="name_hotel">{{ hotel.name }}</p>
         <span class="options">{{ hotel.adress }}</span>
         <span class="options">{{ hotel.specialty }}</span>
         <img class="image_hotel" :src="hotel.photo" :alt="'image100x100 '+hotel.photo" />
@@ -10,7 +10,7 @@
      
       </div>
  
-    </v-card>
+    </div>
 </template>
 
 <script>

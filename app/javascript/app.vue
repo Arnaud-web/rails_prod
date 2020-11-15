@@ -1,5 +1,5 @@
 <template>
-  <v-app id="app" class="body_h">
+  <div id="app" class="body_h">
     <div v-show="showH">
       <p>{{ message }}</p>
       <div v-if="!showLogin()"> 
@@ -42,9 +42,9 @@
               >
                 Reservé
               </v-btn> -->
-              <v-btn class="btn btn-sm btn-info" @click="show(hotel)">
+              <button class="btn btn-sm btn-info" @click="show(hotel)">
                 show
-              </v-btn>
+              </button>
               <!-- <a class="btn btn" @click="addToCart(hotel)">
           reserve
           </a> -->
@@ -80,7 +80,7 @@
         <Comments :hotel="hotel"/>
       </div>
     </div>
-  </v-app>
+  </div>
 </template>
 
 <script>
@@ -171,6 +171,8 @@ export default {
         console.log(error);
         this.errored = true;
       })
+      let cookieValue  = JSON.parse($cookies.get('user'))
+      console.log("cookies", cookieValue)
   },
 };
 </script>
