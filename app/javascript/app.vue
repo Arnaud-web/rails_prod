@@ -73,8 +73,11 @@
       <div v-if="showFormEmail" >
         <FormMail :hotel="hotel"/>
       </div>
+      <div>
+        <CommentShow :hotel = "hotel"/>
+      </div>
       <div v-if="!showLogin()" >
-        <Comments />
+        <Comments :hotel="hotel"/>
       </div>
     </div>
   </div>
@@ -89,6 +92,7 @@ import Segnup from "./components/login/Segnup";
 import Create from "./components/hotel/Create";
 import FormMail from './components/mail/FormMail'
 import Comments from './components/hotel/Comments'
+import CommentShow from './components/hotel/CommentShow'
 export default {
   data: function () {
     return {
@@ -109,6 +113,7 @@ export default {
     Create,
     FormMail,
     Comments,
+    CommentShow,
   },
   computed: {},
   methods: {
@@ -153,7 +158,19 @@ export default {
       .catch((error) => {
         console.log(error);
         this.errored = true;
-      });
+      })
+      axios
+      .get("http://127.0.0.1:3000/v1/user_comment")
+      .then((response) => {
+        // this.hotels = response.data;
+        this.$store.state.comments = response.data;
+        console.log(response.data);
+        console.log('comments',this.$store.state.comments);
+      })
+      .catch((error) => {
+        console.log(error);
+        this.errored = true;
+      })
   },
 };
 </script>
