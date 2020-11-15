@@ -6,6 +6,8 @@ class V1::HotelsController < ActionController::API
     end
     def create
         @resto = Hotel.new(contact_params)
+        @user = User.find(params[:user])
+        @resto.user = @user
         @resto.save
 
         render json: @resto, status: :created

@@ -42,7 +42,8 @@ export default {
           specialty: this.specialty,
           prix: this.prix,
           photo: this.photo,
-          adress: this.adress
+          adress: this.adress,
+          user: this.$store.state.user.id 
         };
         const res = await axios.post("http://127.0.0.1:3000//v1/hotels", json, {
           headers: {
