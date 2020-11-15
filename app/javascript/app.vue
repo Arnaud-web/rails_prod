@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="body_h">
+  <v-app id="app" class="body_h">
     <div v-show="showH">
       <p>{{ message }}</p>
       <div v-if="!showLogin()"> 
@@ -35,16 +35,16 @@
           <div>
             <Hotel :hotel="hotel" />
             <div class="btn_options">
-              <!-- <button
+              <!-- <v-btn
                 v-if="!showLogin()"
                 class="btn btn-sm btn-info"
                 @click="showFormEmail = !showFormEmail"
               >
                 Reservé
-              </button> -->
-              <button class="btn btn-sm btn-info" @click="show(hotel)">
+              </v-btn> -->
+              <v-btn class="btn btn-sm btn-info" @click="show(hotel)">
                 show
-              </button>
+              </v-btn>
               <!-- <a class="btn btn" @click="addToCart(hotel)">
           reserve
           </a> -->
@@ -59,16 +59,16 @@
         <!-- <a class="btn btn" @click="addToCart(hotel)">
           reserve
           </a> -->
-        <button
+        <v-btn
           v-if="!showLogin()"
           class="btn btn-sm btn-info"
          @click="showFormEmail = !showFormEmail"
         >
           Reservé
-        </button>
-        <button class="btn btn-sm btn-info" @click="show(hotel)">
+        </v-btn>
+        <v-btn class="btn btn-sm btn-info" @click="show(hotel)">
           Listes Hotels
-        </button>
+        </v-btn>
       </div>
       <div v-if="showFormEmail" >
         <FormMail :hotel="hotel"/>
@@ -80,7 +80,7 @@
         <Comments :hotel="hotel"/>
       </div>
     </div>
-  </div>
+  </v-app>
 </template>
 
 <script>
@@ -93,6 +93,7 @@ import Create from "./components/hotel/Create";
 import FormMail from './components/mail/FormMail'
 import Comments from './components/hotel/Comments'
 import CommentShow from './components/hotel/CommentShow'
+import Vuetify from 'vuetify'
 export default {
   data: function () {
     return {

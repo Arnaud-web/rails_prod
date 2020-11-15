@@ -8,9 +8,12 @@
 import Vue from 'vue'
 import App from '../app.vue'
 import store from '../store.js'
+import Vuetify from 'vuetify'
+Vue.use(Vuetify)
 document.addEventListener('DOMContentLoaded', () => {
   const app = new Vue({
     store,
+    vuetify: new Vuetify(),
     render: h => h(App)
   }).$mount()
   document.body.appendChild(app.$el)
