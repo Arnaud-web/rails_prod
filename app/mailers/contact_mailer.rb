@@ -1,7 +1,7 @@
 class ContactMailer < ApplicationMailer
     def contact(data)
         @data = data
-       mail(to: 'admin@admin.com' , subject: 'reservation' )
+       mail(to: @data['user']['email'] , subject: 'reservation' )
         
     end
 end
