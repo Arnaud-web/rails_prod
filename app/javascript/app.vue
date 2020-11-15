@@ -93,7 +93,6 @@ import Create from "./components/hotel/Create";
 import FormMail from './components/mail/FormMail'
 import Comments from './components/hotel/Comments'
 import CommentShow from './components/hotel/CommentShow'
-import Vuetify from 'vuetify'
 export default {
   data: function () {
     return {
